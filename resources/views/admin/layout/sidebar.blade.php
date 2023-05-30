@@ -61,7 +61,7 @@
 
             @if($current_user->user_type == 1)
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ Request::routeIs('glossary') ? 'active' : '' }}">
+                    <a href="{{route('glossary')}}" class="nav-link {{ Request::routeIs('glossary') ? 'active' : '' }}">
                         <i class="nav-icon fa fa-list-alt"></i>
                             <p>Glossary</p>
                     </a>   

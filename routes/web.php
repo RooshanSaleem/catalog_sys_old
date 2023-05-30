@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\GlossaryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -35,6 +36,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/{user}/edit', [UsersController::class, 'edit'])->name('users.edit');
     Route::match(['put', 'patch'], '/users/{user}', [UsersController::class, 'update'])->name('users.update');
     Route::get('/users/create', [UsersController::class, 'create'])->name('user.create');
+    Route::post('/users', [UsersController::class, 'store'])->name('users.store');
+    Route::delete('/users/{user}', [UsersController::class, 'destroy'])->name('users.destroy');
+
+
+    Route::get('/glossary', [GlossaryController::class, 'index'])->name('glossary');
+    Route::get('/glossary/{id}/edit', [GlossaryController::class, 'edit'])->name('glossary.edit');
+    Route::put('/glossary/{id}', [GlossaryController::class, 'update'])->name('glossary.update');
+
+
+
 
     Route::get('/equipments', [EquipmentController::class, 'index'])->name('equipments');
     Route::get('/equipments/{equipment}/edit', [EquipmentController::class, 'edit'])->name('equipment.edit');

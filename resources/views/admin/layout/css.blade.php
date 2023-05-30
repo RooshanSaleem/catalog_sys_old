@@ -31,5 +31,29 @@
   td.centered-cell {
   text-align: center;
 }
+
+.btn-orange {
+  background-color: #FF8000;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn-orange:hover {
+  background-color: #D66900;
+  color: white;
+}
+
+.btn-purple {
+  background-color: #6610f2;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn-purple:hover {
+  background-color: #5c0ebc;
+  color: white;
+}
+
+
   </style>
 

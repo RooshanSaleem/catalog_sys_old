@@ -19,10 +19,17 @@ class Equipment extends Authenticatable
         'detailed_description',
         'price',
         'unite_for_sale',
+        'glossary_item_id',
     ];
 
     protected $casts = [
         'price' => 'float',
         'unite_for_sale' => 'integer',
+        'glossary_item_id' => 'integer',
     ];
+
+    public function glossaryItem()
+    {
+        return $this->belongsTo(GlossaryItem::class);
+    }
 }

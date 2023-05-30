@@ -28,7 +28,7 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                   <div class="inner">
-                    <h3>0</h3>
+                    <h3 style="padding-left:10px;">0</h3>
 
                     <p>New orders today</p>
                   </div>
@@ -43,7 +43,7 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                   <div class="inner">
-                    <h3>0<sup style="font-size: 20px"></sup></h3>
+                    <h3 style="padding-left:10px;">0<sup style="font-size: 20px"></sup></h3>
 
                     <p>New sheets this week</p>
                   </div>
@@ -59,7 +59,7 @@
                 <!-- small box -->
                 <div class="small-box bg-indigo">
                   <div class="inner">
-                    <h3>0</h3>
+                    <h3 style="padding-left:10px;">{{$userCount}}</h3>
 
                     <p>User registrations this week</p>
                   </div>
@@ -74,7 +74,7 @@
                 <!-- small box -->
                 <div class="small-box bg-danger">
                   <div class="inner">
-                    <h3>0</h3>
+                    <h3 style="padding-left:10px;">0</h3>
 
                     <p>New catalogs this week</p>
                   </div>

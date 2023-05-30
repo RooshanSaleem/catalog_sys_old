@@ -1,4 +1,6 @@
 <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
@@ -39,3 +41,36 @@
         $('.datatable').DataTable();
     });
 </script>
+
+<script>
+    function deleteUser(userId) {
+        if (confirm('Are you sure you want to delete this user?')) {
+          $.ajax({
+                  type: 'post',
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  url: "{{ route('users.destroy', ':id') }}".replace(':id', userId),
+                  data: {
+                    '_method': 'delete'
+                  },
+                  success: function (response, textStatus, xhr) {
+                    if (response.success)
+                    {
+                      alert('User deleted successfully.');
+                      location.href = "{{route('users')}}"
+                    }
+                    else
+                    {
+                      alert('You cannot delete your own account. Please contact system administrator.');
+                    }
+                    
+                  },
+                  error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in deleting...')
+                  }
+              });
+        }
+    }
+</script>
+
