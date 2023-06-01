@@ -16,11 +16,10 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         //
-        $adminUserType = UserType::create(['type' => 'admin']);
+        $adminUserType = UserType::create(['type' => 'super_admin']);
 
         User::create([
-            'username' => 'admin',
-            'name' => 'Admin User',
+            'name' => 'Super Admin User',
             'email' => 'admin@admin.com',
             'password' => Hash::make('12345'),
             'user_type' => $adminUserType->id,

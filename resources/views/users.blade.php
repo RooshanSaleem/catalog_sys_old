@@ -11,13 +11,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">System Users</h1>
+                    <h1 class="m-0">{{$show_admin_users ? 'Admin Users' : 'System Users'}}</h1>
                 </div>
+                @if(!$show_admin_users)
                 <div class="col-sm-6 text-right" style="padding-right: 30px; padding-top: 50px;">
                     <a href="{{ route('user.create') }}" class="btn btn-success" style="width:150px; margin-right: 10px;">Add new user</a>
                     <a href="#" class="btn btn-purple">Add users via csv</a>
                 </div>
-
+                @endif
             </div>
         </div>
     </div>
@@ -44,10 +45,8 @@
                             <th class="table-header">Name</th>
                             <th class="table-header">User type</th>
                             <th class="table-header">Email</th>
-                            <th class="table-header">Phone</th>
-                            <th class="table-header">Address</th>
-                            <th class="table-header">Discount</th>
                             <th class="table-header">Added by</th>
+                            <th class="table-header">Status</th>
                             <th class="table-header">Actions</th>
                         </tr>
                     </thead>
@@ -57,16 +56,20 @@
                                 <td>{{ $user->name }}</td>
                                 <td class="centered-cell">{{ $user->usertype->type }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->phone }}</td>
-                                <td>{{ $user->address }}</td>
-                                <td class="centered-cell">{{ $user->discount }}</td>
-                                <td>{{ $user->addedBy->email }}</td>
-                                <td><a href="{{ route('users.edit', $user->id) }}" style="padding-right:5px;padding-left:5px">
-                                <i class="nav-icon fas fa-edit"></i></a>
-                                <a href="javascript:void(0);" onclick="deleteUser({{ $user->id }})">
-                                    <i class="nav-icon fa fa-trash"></i>    
-                                    <!--<img src="delete_icon.png" alt="Delete" width="24" height="24">-->
-                                    </a></td>
+                                <td>{{ $user->addedBy ? $user->addedBy->email : '' }}</td>
+                                <td><span class="badge {{ $user->is_active ? 'bg-success' : 'bg-danger' }}">{{ $user->is_active ? 'Active' : 'Blocked' }}</span></td>
+                                <td>
+                                    @if(!$show_admin_users)
+                                        <a href="{{ route('users.edit', $user->id) }}" style="padding-right:5px;padding-left:5px">
+                                        <i class="nav-icon fas fa-edit"></i></a>
+                                        <a href="javascript:void(0);" onclick="deleteUser({{ $user->id }})">
+                                        <i class="nav-icon fa fa-trash"></i>    
+                                        <!--<img src="delete_icon.png" alt="Delete" width="24" height="24">-->
+                                        </a>
+                                    @else
+                                    <a href="{{ route('admin.access_dashboard', ['id' => $user->id]) }}" class="btn btn-primary">Access Dashboard</a>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -75,10 +78,8 @@
                             <th class="table-header">Name</th>
                             <th class="table-header">User type</th>
                             <th class="table-header">Email</th>
-                            <th class="table-header">Phone</th>
-                            <th class="table-header">Address</th>
-                            <th class="table-header">Discount</th>
                             <th class="table-header">Added by</th>
+                            <th class="table-header">Status</th>
                             <th class="table-header">Actions</th>
                         </tr>
                     </tfoot>

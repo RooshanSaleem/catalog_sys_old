@@ -37,15 +37,15 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                   <div class="inner">
-                    <h3 style="padding-left:10px;">0<sup style="font-size: 20px"></sup></h3>
+                    <h3 style="padding-left:10px;">{{$adminCount}}<sup style="font-size: 20px"></sup></h3>
 
-                    <p>New sheets this week</p>
+                    <p>New Admins this week</p>
                   </div>
                   <div class="icon">
                   <i class="ion ion-document-text"></i>
 
                   </div>
-                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                  <a href="{{ route('users.admin_users') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
               </div>
               <!-- ./col -->

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewUserEmail;
+use App\Mail\NewUserPasswordEmail;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -17,8 +19,10 @@ class UsersController extends Controller
     {
         $users = User::all();
         $current_user = Auth::user();
+        $show_admin_users = false;
 
-        return view('users', compact('users'), compact('current_user'));
+
+        return view('users', compact('users','current_user','show_admin_users'));
     }
 
     public function edit(User $user)
@@ -35,12 +39,10 @@ class UsersController extends Controller
             'email' => 'required|email',
             'phone' => 'required|numeric',
             'user_type' => 'required',
-            'password' => 'required|min:8',
             'discount' => 'required|numeric',
+            'is_active' => 'required|numeric',
         ]);
 
-        // Hash the password
-        $validatedData['password'] = Hash::make($validatedData['password']);
 
         $user->update($validatedData);
 
@@ -63,13 +65,15 @@ class UsersController extends Controller
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|numeric',
             'user_type' => 'required',
-            'password' => 'required|min:8',
             'discount' => 'required|numeric',
+            'is_active' => 'required|numeric',
         ]);
 
 
         // Hash the password
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        $generatedPassword = \Illuminate\Support\Str::random(8);
+
+        $validatedData['password'] = Hash::make($generatedPassword);
 
         // Add the current user's ID as the "added_by" value
         $validatedData['added_by'] = Auth::id();
@@ -83,7 +87,10 @@ class UsersController extends Controller
             'password' => $validatedData['password'],
             'discount' => $validatedData['discount'],
             'added_by' => $validatedData['added_by'],
+            'is_active' => $validatedData['is_active'],
         ]);
+
+        \Mail::to($user->email)->send(new NewUserEmail($user, $generatedPassword));
 
         return redirect()->route('users', $user->id)->with('success', 'User created successfully');
     }
@@ -94,13 +101,24 @@ class UsersController extends Controller
         // Check if the user is trying to delete their own account
         if ($user->id === $current_user->id) {
             return response()->json(['success' => false, 'message' => 'You cannot delete your own account.']);
-   
+
         }
 
         // Perform the deletion
         $user->delete();
 
         return response()->json(['success' => true, 'message' => 'User deleted successfully.']);
-}
+    }
+
+    public function adminUsers()
+    {
+        $current_user = Auth::user();
+        $users = User::whereHas('usertype', function ($query) {
+            $query->where('type', 'admin');
+        })->get();
+        $show_admin_users = true;
+
+        return view('users', compact('users','current_user','show_admin_users'));
+    }
 
 }

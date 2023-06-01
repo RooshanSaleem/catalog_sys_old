@@ -75,20 +75,23 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input id="password" type="password" name="password" value="{{ old('password', isset($user->id) ? $user->password : '') }}" required
-                                class="form-control @error('password') is-invalid @enderror">
-                            @error('password')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
                             <label for="discount">Discount</label>
                             <input id="discount" type="text" name="discount"
                                 value="{{ old('discount', isset($user->id) ? $user->discount : '') }}" required
                                 class="form-control @error('discount') is-invalid @enderror">
                             @error('discount')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="is_active">Status</label>
+                            <select id="is_active" name="is_active" class="form-control @error('is_active') is-invalid @enderror">
+                                <option value="1" @if(old('is_active', $user->is_active) == 1) selected @endif>Active</option>
+                                <option value="0" @if(old('is_active', $user->is_active) == 0) selected @endif>Blocked</option>
+                                
+                            </select>
+                            @error('is_active')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

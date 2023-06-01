@@ -26,7 +26,7 @@ class User extends Authenticatable
         'user_type',
         'discount',
         'added_by',
-
+        'is_active',
     ];
 
     /**
@@ -50,12 +50,12 @@ class User extends Authenticatable
 
     public function usertype()
     {
-        return $this->belongsTo(UserType::class,'user_type');
+        return $this->belongsTo(UserType::class, 'user_type');
     }
 
     public function addedBy()
     {
-    return $this->belongsTo(User::class, 'added_by');
+        return $this->belongsTo(User::class, 'added_by');
     }
 
 }

@@ -51,6 +51,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/equipments/{equipment}/edit', [EquipmentController::class, 'edit'])->name('equipment.edit');
     Route::match(['put', 'patch'], '/equipments/{equipment}', [EquipmentController::class, 'update'])->name('equipment.update');
 
+    Route::get('/users/admin', [UsersController::class, 'adminUsers'])->name('users.admin_users');
+
+    Route::get('/admin/dashboard/{id}', [DashboardController::class, 'accessDashboard'])->name('admin.access_dashboard');
 
 
 });
