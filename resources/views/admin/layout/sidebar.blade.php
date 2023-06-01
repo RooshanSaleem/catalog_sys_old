@@ -70,7 +70,8 @@
 
             <li class="nav-item">
                 @if($current_user->user_type == 1)
-                    <a href="{{route('equipments')}}" class="nav-link {{ Request::routeIs('equipments') ? 'active' : '' }}">
+                    <a href="#" class="nav-link {{Request::routeIs('equipments') ? 'active': ''}}">
+                    <!--<a href="{{route('equipments')}}" class="nav-link {{ Request::routeIs('equipments') ? 'active' : '' }}">-->
                 @else
                     <a href="#" class="nav-link">
                 @endif

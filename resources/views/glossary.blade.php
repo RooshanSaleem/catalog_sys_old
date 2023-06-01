@@ -61,7 +61,7 @@
                                         @endphp
                                         <td>{{ $itemNames }}</td>
                                     @endforeach
-                                        <td><a href="{{ route('glossary.update', $itemID) }}" style="padding-right:5px;padding-left:5px">
+                                        <td><a href="{{ route('glossary.edit', $itemID) }}" style="padding-right:5px;padding-left:5px">
                                             <i class="nav-icon fas fa-edit"></i></a>
                                             <a href="#">  
                                             <i class="nav-icon fa fa-trash"></i>    
