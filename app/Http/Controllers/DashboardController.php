@@ -24,8 +24,10 @@ class DashboardController extends Controller
         $userType = $current_user->usertype->type; 
 
         return match ($userType) {
-          'Admin' => view('admin.dashboard',compact('current_user', 'userCount')),
-          'Customer' => view('customer.dashboard',compact('current_user')),
+          'Super admin' => view('admin.dashboard',compact('current_user', 'userCount')),
+          'Admin' => view('customer.dashboard',compact('current_user')),
+          'Technical writer' => view('end_client.dashboard',compact('current_user')),
+          'Dealer' => view('end_client.dashboard',compact('current_user')),
           'End client' => view('end_client.dashboard',compact('current_user')),
         };
     }
