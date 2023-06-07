@@ -38,8 +38,10 @@
                         <div class="form-group">
                             <label for="user_type">User Type</label>
                             <select id="user_type" name="user_type" class="form-control @error('user_type') is-invalid @enderror">
-                                <option value="1" @if(old('user_type', isset($user->id) ? $user->user_type : '') == 1) selected @endif>Admin</option>
-                                <option value="2" @if(old('user_type', isset($user->id) ? $user->user_type : '') == 2) selected @endif>Customer</option>
+                                <option value="1" @if(old('user_type', isset($user->id) ? $user->user_type : '') == 1) selected @endif>Super admin</option>
+                                <option value="2" @if(old('user_type', isset($user->id) ? $user->user_type : '') == 2) selected @endif>Admin</option>
+                                <option value="3" @if(old('user_type', isset($user->id) ? $user->user_type : '') == 3) selected @endif>Technical writer</option>
+                                <option value="3" @if(old('user_type', isset($user->id) ? $user->user_type : '') == 3) selected @endif>Dealer</option>
                                 <option value="3" @if(old('user_type', isset($user->id) ? $user->user_type : '') == 3) selected @endif>End client</option>
                             </select>
                             @error('user_type')

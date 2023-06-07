@@ -13,7 +13,7 @@ class DashboardController extends Controller
 {
   public function index()
   {
-
+    //to count the number of users registered in the current week
     $startOfWeek = Carbon::now()->startOfWeek();
     $endOfWeek = Carbon::now()->endOfWeek();
 
@@ -23,21 +23,26 @@ class DashboardController extends Controller
     $startDate = Carbon::now()->startOfWeek(); // Get the start date of the current week
     $endDate = Carbon::now(); // Current date and time
 
+    
+
+    //to count the admins registered in the system
+
     $adminCount = DB::table('users')
       ->join('user_type', 'users.user_type', '=', 'user_type.id')
       ->where('user_type.type', 'admin')
-      ->whereBetween('users.created_at', [$startDate, $endDate])
       ->count();
 
+
+    // loged in user instance
     $current_user = Auth::user();
     $userType = $current_user->usertype->type;
 
 
     return match (strtolower($userType)) {
       'super_admin' => view('admin.dashboard', compact('current_user', 'userCount', 'adminCount')),
-      'admin' => view('customer.dashboard', compact('current_user')),
-      'Technical writer' => view('end_client.dashboard', compact('current_user')),
-      'Dealer' => view('end_client.dashboard', compact('current_user')),
+      'admin' => view('userAdmin.dashboard', compact('current_user')),
+      'Technical writer' => view('techWriter.dashboard', compact('current_user')),
+      'Dealer' => view('dealer.dashboard', compact('current_user')),
       'End client' => view('end_client.dashboard', compact('current_user')),
     };
   }

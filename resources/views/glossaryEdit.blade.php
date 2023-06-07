@@ -1,46 +1,60 @@
 @extends('admin.layout.master')
 @section('title', isset($glossaryItem) ? 'Edit Glossary' : 'Add Glossary')
 @section('content')
-    <div class="container">
-        <h1>Edit Glossary</h1>
-        <form action="{{ route('glossary.update', $glossaryItem->id) }}" method="POST">
-            @csrf
-            @if (isset($glossaryItem->id))
-                @method('PUT')
-            @endif
-
-            <div class="form-group">
-                <label for="item_id">Item ID:</label>
-                <input type="text" id="item_id" name="item_id" value="{{ $glossaryItem->item_id }}" class="form-control" readonly>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                            <h1 class="m-0">{{isset($glossaryItem->id) ? 'Edit Glossary Item' : 'Add New Glossary Item'}}</h1>
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="language_id">Language:</label>
-                <select name="language_id" id="language_id" class="form-control">
-                    @foreach ($languages as $language)
-                        <option value="{{ $language->id }}" {{ $glossaryItem->language_id === $language->id ? 'selected' : '' }}>
-                            {{ $language->language }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="item_name">Item Name:</label>
-                <input type="text" id="item_name" name="item_name" value="{{ $glossaryItem->item_name }}" class="form-control" required class="form-control @error('email') is-invalid @enderror">
-                            @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-            </div>
-
-            <div class="form-group">
-                @if (isset($glossaryItem->id))
-                    <button type="submit" class="btn btn-primary" id="updateButton">Update</button>
-                @else
-                    <button type="submit" class="btn btn-primary" id="updateButton">Add</button>
-                @endif
-                <a href="{{route('glossary')}}" class="btn btn-secondary">Cancel</a>
-            </div>
-        </form>
     </div>
+
+    <!-- /.content-header -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST" action="{{ isset($glossaryItem->id) ? route('glossary.update', $glossaryItem->id) : route('glossary.store') }}">
+                    @csrf
+                    @if (isset($glossaryItem->id))
+                        @method('PUT')
+                    @endif
+                    @csrf
+                    <div class="form-group">
+                        <label for="item_id">Item ID:</label>
+                        <input type="text" name="item_id" id="item_id" class="form-control" value="{{ old('item_id', isset($glossaryItem->id) ? $glossaryItem->item_id : $lastItemId +1) }}" readonly> 
+                    </div>
+
+                    <div class="form-group">    
+                        <label>Item Names: </label>
+
+                        @foreach ($languages as $language)
+                            <br>
+                            @if(isset($glossaryItem->id))
+                            @php
+                                $glossaryLanguages = $glossaryItem->languages;
+                                $itemName = array_column($glossaryLanguages, 'item_name', 'language_id')[$language->id];
+
+
+                            @endphp
+                            @endif
+                            <label>{{$language->language}}</label>
+                            <input type="text" name="item_name[]" class="form-control" required value="{{ old('item_name[]', isset($glossaryItem->id) ? $itemName : '') }}" class="form-control @error('item_name') is-invalid @enderror">
+                                            @error('item_name')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                            <input type="hidden" name="language_id[]" value="{{ $language->id }}">
+                        @endforeach
+                    </div>
+
+                        <button type="submit" class="btn btn-primary">{{isset($glossaryItem->id) ? 'Edit' : 'Add'}} Glossary</button>
+                        <a href="{{route('glossary')}}" class="btn btn-secondary">Cancel</a>
+                    </form>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection

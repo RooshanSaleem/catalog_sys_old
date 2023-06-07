@@ -6,7 +6,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1 class="m-0">Dashboard</h1>
+                <h1 class="m-0">Super Admin Dashboard</h1>
               </div>
             </div><!-- /.row -->
           </div><!-- /.container-fluid -->
@@ -18,20 +18,6 @@
           <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-              <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-info">
-                  <div class="inner">
-                    <h3 style="padding-left:10px;">0</h3>
-
-                    <p>New orders today</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-bag"></i>
-                  </div>
-                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
               <!-- ./col -->
               <div class="col-lg-3 col-6">
                 <!-- small box -->
@@ -39,7 +25,7 @@
                   <div class="inner">
                     <h3 style="padding-left:10px;">{{$adminCount}}<sup style="font-size: 20px"></sup></h3>
 
-                    <p>New Admins this week</p>
+                    <p>System Admins</p>
                   </div>
                   <div class="icon">
                   <i class="ion ion-document-text"></i>
@@ -48,6 +34,7 @@
                   <a href="{{ route('users.admin_users') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
               </div>
+          
               <!-- ./col -->
               <div class="col-lg-3 col-6">
                 <!-- small box -->
@@ -63,6 +50,22 @@
                   <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
               </div>
+
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3 style="padding-left:10px;">0</h3>
+
+                    <p>New orders today</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-bag"></i>
+                  </div>
+                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+
               <!-- ./col -->
               <div class="col-lg-3 col-6">
                 <!-- small box -->
@@ -70,7 +73,7 @@
                   <div class="inner">
                     <h3 style="padding-left:10px;">0</h3>
 
-                    <p>New catalogs this week</p>
+                    <p>System logs</p>
                   </div>
                   <div class="icon">
                   <i class="ion ion-ios-book"></i>

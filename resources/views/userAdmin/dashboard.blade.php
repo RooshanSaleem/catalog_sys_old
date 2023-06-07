@@ -4,6 +4,6 @@
     @csrf
 
     <div>
-        <label for="email">This is the customer dashboard</label>
+        <label for="email">This is the admin dashboard</label>
     </div>
 </form>

@@ -11,8 +11,8 @@
                         <h1 class="m-0">Glossary</h1>
                     </div>
                     <div class="col-sm-6 text-right" style="padding-right: 30px; padding-top: 50px;">
-                    <a href="#" class="btn btn-orange" style="width:150px; margin-right: 10px;">Add new language</a>
-                        <a href="#" class="btn btn-success" style="width:150px; margin-right: 10px;">Add new item</a>
+                    <a href="{{route('languages.create')}}" class="btn btn-orange" style="width:150px; margin-right: 10px;">Add new language</a>
+                        <a href="{{route('glossary.create')}}" class="btn btn-success" style="width:150px; margin-right: 10px;">Add new item</a>
                         <a href="#" class="btn btn-purple">Add items via csv</a>
 
                     </div>
