@@ -64,7 +64,6 @@
                                         <i class="nav-icon fas fa-edit"></i></a>
                                         <a href="javascript:void(0);" onclick="deleteUser({{ $user->id }})">
                                         <i class="nav-icon fa fa-trash"></i>    
-                                        <!--<img src="delete_icon.png" alt="Delete" width="24" height="24">-->
                                         </a>
                                     @else
                                     <a href="{{ route('admin.access_dashboard', ['id' => $user->id]) }}" class="btn btn-primary">Access Dashboard</a>

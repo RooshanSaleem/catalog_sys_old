@@ -49,13 +49,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/languages', [LanguageController::class, 'store'])->name('languages.store');
     Route::get('/glossary/create', [GlossaryController::class, 'create'])->name('glossary.create');
     Route::post('/glossary', [GlossaryController::class, 'store'])->name('glossary.store');
-
+    Route::delete('/glossary/{id}', [GlossaryController::class, 'destroy'])->name('glossary.destroy');
 
 
 
     Route::get('/equipments', [EquipmentController::class, 'index'])->name('equipments');
     Route::get('/equipments/{equipment}/edit', [EquipmentController::class, 'edit'])->name('equipment.edit');
     Route::match(['put', 'patch'], '/equipments/{equipment}', [EquipmentController::class, 'update'])->name('equipment.update');
+    Route::delete('/equipment/{id}', [EquipmentController::class, 'destroy'])->name('equipment.destroy');
 
    
 

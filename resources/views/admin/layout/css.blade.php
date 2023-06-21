@@ -20,40 +20,43 @@
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
 
   <link rel="stylesheet" href="{{asset('dist/css/datatables.min.css')}}">
-
+  <link rel="stylesheet" href="{{ asset('flatpickr.css') }}">
   <style>
     .table-header {
-  text-align: center !important;
-  background-color: #4E75A5;
-  color: white;
-  }
+      text-align: center !important;
+      background-color: #4E75A5;
+      color: white;
+      }
 
-  td.centered-cell {
-  text-align: center;
-}
+    td.centered-cell {
+      text-align: center;
+    }
 
-.btn-orange {
-  background-color: #FF8000;
-  color: white;
-  transition: background-color 0.3s ease;
-}
+    .btn-orange {
+      background-color: #FF8000;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
 
-.btn-orange:hover {
-  background-color: #D66900;
-  color: white;
-}
+    .btn-orange:hover {
+      background-color: #D66900;
+      color: white;
+    }
 
-.btn-purple {
-  background-color: #6610f2;
-  color: white;
-  transition: background-color 0.3s ease;
-}
+    .btn-purple {
+      background-color: #6610f2;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
 
-.btn-purple:hover {
-  background-color: #5c0ebc;
-  color: white;
-}
+    .btn-purple:hover {
+      background-color: #5c0ebc;
+      color: white;
+    }
 
+    .bg-dark-orange {
+      background-color: #CC6124 !important;
+    }
 
   </style>
 

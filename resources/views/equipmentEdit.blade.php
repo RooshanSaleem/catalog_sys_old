@@ -1,16 +1,19 @@
 @extends('admin.layout.master')
 @section('title', 'Equipment Details')
 @section('content')
+
     <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Edit equipment details</h1>
+                        <h1 class="m-0">Edit Equipment Details</h1>
+                    </div>
                 </div>
             </div>
         </div>
     <!-- /.content-header -->
+
     <section>
         <div class="content">
             <div class="container-fluid">
@@ -48,6 +51,25 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="validity_starts">Validity Start</label>
+                                <input id="validity_starts" type="text" name="validity_starts" value="{{ old('validity_starts', $equipment->validity_starts ? $equipment->validity_starts : '') }}" required
+                                    class="form-control datepicker @error('validity_starts') is-invalid @enderror">
+                                @error('validity_starts')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="validity_ends">Validity End</label>
+                                <input id="validity_ends" type="text" name="validity_ends" value="{{ old('validity_ends', $equipment->validity_ends ? $equipment->validity_ends: '') }}" required
+                                    class="form-control datepicker @error('validity_ends') is-invalid @enderror">
+                                @error('validity_ends')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+
+                            <div class="form-group">
                                 <label for="price">Price</label>
                                 <input id="price" type="text" name="price" value="{{old('price', $equipment->price)}}" required
                                 class="form-control @error('price') is-invalid @enderror">
@@ -72,7 +94,10 @@
 
                         </form>
                     </div>
+                </div>
             </div>
         </div>
     </section>
+
 @endsection
+

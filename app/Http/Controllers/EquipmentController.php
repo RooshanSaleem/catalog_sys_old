@@ -32,11 +32,21 @@ class EquipmentController extends Controller
             'detailed_description' => 'required|string',
             'price' => 'required|numeric',
             'unite_for_sale' => 'required|numeric',
+            'validity_starts' => 'date',
+            'validity_ends' => 'date',
 
         ]);
 
         $equipment->update($validatedData);
 
         return redirect()->route('equipments')->with('success', 'Equipment updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        //$equipment->delete();
+        Equipment::where('id', $id)->delete();
+
+        return response()->json(['success' => true, 'message' => 'Equipment deleted successfully.']);
     }
 }

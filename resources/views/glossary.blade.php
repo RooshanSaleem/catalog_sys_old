@@ -37,10 +37,11 @@
                     </div>
                 @endif
                 <div class="card-body">
-                    <table id="example2" class="table datatable table-bordered table-hover">
+
+                    <!-- Adding the table -->
+                    <table id="glossary_table" class="table datatable table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th class="table-header">Item ID</th>
                                 @foreach ($languages as $language)
                                     <th class="table-header">{{ $language->language }}</th>
                                 @endforeach
@@ -53,7 +54,6 @@
                             @endphp
                             @foreach ($groupedItems as $itemID => $items)
                                 <tr>
-                                <td class="centered-cell">{{ $itemID }}</td>
                                     @foreach ($languages as $language)
                                         @php
                                             $filteredItems = $items->where('language_id', $language->id);
@@ -63,14 +63,13 @@
                                     @endforeach
                                         <td><a href="{{ route('glossary.edit', $itemID) }}" style="padding-right:5px;padding-left:5px">
                                             <i class="nav-icon fas fa-edit"></i></a>
-                                            <a href="#">  
-                                            <i class="nav-icon fa fa-trash"></i>    
+                                            <a href="javascript:void(0);" onclick="deleteGlossaryItem({{$itemID }})">
+                                            <i class="nav-icon fa fa-trash"></i> </td>   
                                 </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th class="table-header">Item ID</th>
                                 @foreach ($languages as $language)
                                     <th class="table-header">{{ $language->language }}</th>
                                 @endforeach
@@ -83,4 +82,11 @@
             </div>
 
     </section>
+
+    <script>
+        jQuery(document).ready(function() {
+        jQuery('#glossary_table').DataTable();
+     });
+
+    </script>
 @endsection('content')

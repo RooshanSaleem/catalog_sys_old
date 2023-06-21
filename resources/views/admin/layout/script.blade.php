@@ -28,14 +28,16 @@
 <script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- overlayScrollbars -->
 <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('dist/js/adminlte.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('dist/js/demo.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 
+<script src="{{asset('dist/js/adminlte.js')}}"></script>
+
+<script src="{{asset('dist/js/demo.js')}}"></script>
+
+<script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
+<!-- Datatables -->
 <script src="{{asset('dist/js/datatables.min.js')}}"></script>
+<!-- Date picker -->
+<script src="{{ asset('flatpickr.js') }}"></script>
 <script>
     $(document).ready(function() {
         $('.datatable').DataTable();
@@ -74,3 +76,78 @@
     }
 </script>
 
+<script>
+    function deleteGlossaryItem(item_id) {
+        if (confirm('Are you sure you want to delete this glossary item?')) {
+          $.ajax({
+                  type: 'post',
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  url: "{{ route('glossary.destroy', ':id') }}".replace(':id', item_id),
+                  data: {
+                    '_method': 'delete'
+                  },
+                  success: function (response, textStatus, xhr) {
+                    if (response.success)
+                    {
+                      alert('Glossary item deleted successfully.');
+                      location.href = "{{route('glossary')}}"
+                    }
+                    
+                  },
+                  error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in deleting...')
+                  }
+              });
+        }
+    }
+
+    function checkAllPermissions(menuId) {
+            const checkboxes = document.querySelectorAll(`input[name^="permissions[${menuId}"]`);
+            const checkAllCheckbox = document.querySelector(`input[data-menu-id="${menuId}"]`);
+            const isChecked = checkAllCheckbox.checked;
+
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = isChecked;
+            });
+        }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        flatpickr('.datepicker', {
+            dateFormat: 'Y-m-d',
+            // Additional configuration options can be added here
+        });
+    });
+</script>
+
+
+<script>
+    function deleteEquipment(equipmentId) {
+        if (confirm('Are you sure you want to delete this equipment?')) {
+          $.ajax({
+                  type: 'post',
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  url: "{{ route('equipment.destroy', ':id') }}".replace(':id', equipmentId),
+                  data: {
+                    '_method': 'delete'
+                  },
+                  success: function (response, textStatus, xhr) {
+                    if (response.success)
+                    {
+                      alert('Equipment deleted successfully.');
+                      location.href = "{{route('equipments')}}"
+                    }
+                    
+                  },
+                  error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in deleting...')
+                  }
+              });
+        }
+    }
+</script>

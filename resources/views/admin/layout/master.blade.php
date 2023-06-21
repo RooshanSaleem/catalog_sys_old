@@ -37,5 +37,8 @@
 </div>
 <!-- ./wrapper -->
 @include('admin.layout.script')
+@yield('scripts')
 </body>
 </html>
+
+

@@ -1,6 +1,7 @@
 @extends('admin.layout.master')
 @section('title', 'Admin-Dashboard')
 @section('content')
+
   <!-- Content Header (Page header) -->
     <div class="content-header">
           <div class="container-fluid">
@@ -8,28 +9,29 @@
               <div class="col-sm-6">
                 <h1 class="m-0">Super Admin Dashboard</h1>
               </div>
-            </div><!-- /.row -->
-          </div><!-- /.container-fluid -->
+            </div>
+          </div>
         </div>
-        <!-- /.content-header -->
 
         <!-- Main content -->
         <section class="content">
           <div class="container-fluid">
+
             <!-- Small boxes (Stat box) -->
+            
+            <!-- row -->
             <div class="row">
+
               <!-- ./col -->
               <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div class="small-box bg-success">
                   <div class="inner">
                     <h3 style="padding-left:10px;">{{$adminCount}}<sup style="font-size: 20px"></sup></h3>
-
                     <p>System Admins</p>
                   </div>
                   <div class="icon">
-                  <i class="ion ion-document-text"></i>
-
+                    <i class="ion ion-document-text"></i>
                   </div>
                   <a href="{{ route('users.admin_users') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -41,8 +43,7 @@
                 <div class="small-box bg-indigo">
                   <div class="inner">
                     <h3 style="padding-left:10px;">{{$userCount}}</h3>
-
-                    <p>User registrations this week</p>
+                    <p>New accounts this week</p>
                   </div>
                   <div class="icon">
                     <i class="ion ion-person-add"></i>
@@ -51,6 +52,7 @@
                 </div>
               </div>
 
+              <!-- ./col -->
               <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div class="small-box bg-info">
@@ -69,22 +71,41 @@
               <!-- ./col -->
               <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div class="small-box bg-danger">
+                <div class="small-box bg-dark-orange">
                   <div class="inner">
-                    <h3 style="padding-left:10px;">0</h3>
-
-                    <p>System logs</p>
+                    <h3 style="padding-left:10px; color: white;">0</h3>
+                    <p style="color: white;">System logs</p>
                   </div>
                   <div class="icon">
                   <i class="ion ion-ios-book"></i>
                   </div>
-                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                  <a href="#" class="small-box-footer" style="color: white;"> More info <i class="fas fa-arrow-circle-right" style="color: white;"></i>
+</a>
+
                 </div>
               </div>
               <!-- ./col -->
             </div>
             <!-- /.row -->
 
+            <!-- row -->
+            <div class="row">
+
+              <!-- col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                  <div class="inner">
+                    <h3 style="padding-left:10px;">0<sup style="font-size: 20px"></sup></h3>
+                    <p>Code expiry alerts</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-alert"></i>
+                  </div>
+                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+            </div>
 
 
             <!-- Main row -->
@@ -92,8 +113,6 @@
               <!-- Left col -->
               <section class="col-lg-7 connectedSortable">
                 <!-- Custom tabs (Charts with tabs)-->
-                
-
                 <div class="card">
                   <div class="card-header">
                     <h3 class="card-title">

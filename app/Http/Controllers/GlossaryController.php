@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Glossary;
 use App\Models\Language;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Http\Request as IlluminateRequest;
@@ -80,15 +81,26 @@ class GlossaryController extends Controller
             return back()->with('error', 'Write the value for each language.');
         }
 
+        $currentUser = Auth::user();
+        $userType = $currentUser->user_type;
+
+        if ($userType == 1 || $userType == 2) {
+            $belongs_to = $currentUser->email;
+        } else {
+            $belongs_to = $currentUser->added_by;
+        }
+
         // Create glossary entries for each language
         foreach ($languageIds as $index => $languageId) {
             Glossary::create([
                 'item_id' => $itemId,
                 'item_name' => $itemNames[$index],
                 'language_id' => $languageId,
+                'belongs_to' => $belongs_to,
             ]);
         }
 
+        /*
         // Validate the form input that Italian value is unique
         $validator = Validator::make($request->all(), [
             'item_id' => 'required',
@@ -108,11 +120,20 @@ class GlossaryController extends Controller
             ],
         ]);
 
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+        */
         return redirect()->route('glossary')->with('success', 'Glossary item add successfully.');
+    }
+
+
+    public function destroy($item_id)
+    {
+        Glossary::where('item_id', $item_id)->delete();
+
+        return response()->json(['success' => true, 'message' => 'GLossary item deleted successfully.']);
     }
 
 }

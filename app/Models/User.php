@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Permission;
 
 class User extends Authenticatable
 {
@@ -58,4 +60,10 @@ class User extends Authenticatable
         return $this->belongsTo(User::class, 'added_by');
     }
 
+    public function permissions()
+    {
+    return $this->hasMany(Permission::class);
+    }
+
+    
 }

@@ -20,6 +20,10 @@ class Equipment extends Authenticatable
         'price',
         'unite_for_sale',
         'glossary_item_id',
+        'added_by',
+        'belongs_to',
+        'validity_starts',
+        'validity_ends',
     ];
 
     protected $casts = [

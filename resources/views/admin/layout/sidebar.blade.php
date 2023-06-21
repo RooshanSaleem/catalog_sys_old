@@ -38,7 +38,7 @@
             </li>
 
             <li class="nav-item">
-                 @if($current_user->user_type == 1)
+                 @if($current_user->user_type == 1 || $current_user->user_type == 2)
                     <a href="{{route('users')}}" class="nav-link {{ Request::routeIs('users') ? 'active' : '' }}">
                 @else
                     <a href="#" class="nav-link">
@@ -59,7 +59,7 @@
                 </a>    
             </li>-->
 
-            @if($current_user->user_type == 1)
+            @if($current_user->user_type == 1 || $current_user->user_type == 2)
                 <li class="nav-item">
                     <a href="{{route('glossary')}}" class="nav-link {{ Request::routeIs('glossary') ? 'active' : '' }}">
                         <i class="nav-icon fa fa-list-alt"></i>
@@ -69,13 +69,12 @@
             @endif
 
             <li class="nav-item">
-                @if($current_user->user_type == 1)
-                    <a href="#" class="nav-link {{Request::routeIs('equipments') ? 'active': ''}}">
-                    <!--<a href="{{route('equipments')}}" class="nav-link {{ Request::routeIs('equipments') ? 'active' : '' }}">-->
+                @if($current_user->user_type == 1 || $current_user->user_type == 2)
+                    <a href="{{route('equipments')}}" class="nav-link {{ Request::routeIs('equipments') ? 'active' : '' }}">
                 @else
                     <a href="#" class="nav-link">
                 @endif
-                    <i class="nav-icon fa fa-cog fa-spin fa-3x fa-fw"></i>
+                    <i class="nav-icon fa fa-cog fa-3x fa-fw"></i>
                     <p>
                         Equipments
                     </p>
